@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UserControl
+    x:Class="xBindControlInResTemplateRepro.TestControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:xBindControlInResTemplateRepro"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Orientation="Vertical">
+        <StackPanel.Resources>
+            <DataTemplate x:Key="TestDataTemplate" x:DataType="x:String">
+                <TextBlock Text="{x:Bind local:TestControl.ToTestFunc(testTextBox.Text), Mode=OneWay}" />
+            </DataTemplate>
+
+            <!--  WORKAROUND TEMPLATE  -->
+            <!--
+            <DataTemplate x:Key="TestDataTemplate" x:DataType="x:String">
+                <TextBlock Text="{x:Bind decoyResource.Result, Mode=OneWay}">
+                    <TextBlock.Resources>
+                        <local:Decoy x:Name="decoyResource" Value="{x:Bind testTextBox.Text, Mode=OneWay}" />
+                    </TextBlock.Resources>
+                </TextBlock>
+            </DataTemplate>
+            -->
+        </StackPanel.Resources>
+        <TextBox x:Name="testTextBox" Text="Duplication" />
+
+        <ContentControl Content="Test" ContentTemplate="{StaticResource TestDataTemplate}" />
+    </StackPanel>
+</UserControl>

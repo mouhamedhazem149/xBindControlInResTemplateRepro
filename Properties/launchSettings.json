@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "xBindControlInResTemplateRepro (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "xBindControlInResTemplateRepro (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
